@@ -1,8 +1,33 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect, useCallback } from 'react'
+// import './App.css'
+import './AppWithSeparateSquares.css'
 import Pallete from './Pallete'
+import { useSelector, useDispatch } from './redux';
+
+const catsSelector = (state: any) => state.cats;
+const dogsSelector = (state: any) => state.dogs;
+const nameSelector = (state: any) => state.name;
 
 function App() {
+  const cats = useSelector(catsSelector);
+  const dogs = useSelector(dogsSelector);
+  const name = useSelector(nameSelector);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const id = setTimeout(
+      () => {
+        dispatch({ type: 'changeName', payload: 'Vlad' });
+        console.log('changeName');
+      },
+      1000
+    );
+
+    return () => clearTimeout(id);
+  }, [dispatch]);
+
+  console.log({cats, dogs, name})
+
   const [color, setColor] = useState('initial');
   // const [isChose, setIsChose] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,34 +78,49 @@ function App() {
   const colors = ['white', 'blue', 'green']
 
 
+  // with inserted squeres
 
+  // return (
+  //   <div className="content">
+  //     <div className="unit">
+  //       <h1>Granny square element</h1>
+  //       <div className="square four">
+  //         <div className="square three">
+  //           <div
+  //             className="square two"
+  //             style={{
+  //                 backgroundColor: squareState[1].backgroundColor,
+  //                 border: squareState[1].isChose ? 'white 2px dashed' : '#888 solid 2px'
+  //                 }}
+  //             onClick={(e) => handleColorChange(1, e)}
+  //           >
+  //             <div
+  //               className="square one"
+  //               style={{
+  //                   backgroundColor: squareState[0].backgroundColor,
+  //                   border: squareState[0].isChose ? 'white 2px dashed' : '#888 solid 2px'
+  //                   }}
+  //               onClick={(e) => handleColorChange(0, e)}
+  //             ></div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //     <Pallete onClick={changeColorSquare(currentIndex)}/>
+  //   </div>   
+  // )
+
+  // with separate squeres
   return (
     <div className="content">
       <div className="unit">
         <h1>Granny square element</h1>
+        <div className="square">
         <div className="square four">
-          {/* <div>
-            <a href="https://vitejs.dev" target="_blank">
-              <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://reactjs.org" target="_blank">
-              <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-          </div>
-          <h1>Vite + React</h1>
-          <div className="card">
-            <button onClick={() => setCount((count) => count + 1)}>
-              count is {count}
-            </button>
-            <p>
-              Edit <code>src/App.tsx</code> and save to test HMR
-            </p>
-          </div>
-          <p className="read-the-docs">
-            Click on the Vite and React logos to learn more
-          </p> */}
-          <div className="square three">
-            <div
+        </div>
+        <div className="square three">
+        </div>
+        <div
               className="square two"
               style={{
                   backgroundColor: squareState[1].backgroundColor,
@@ -88,22 +128,20 @@ function App() {
                   }}
               onClick={(e) => handleColorChange(1, e)}
             >
-              <div
+        </div>
+        <div
                 className="square one"
                 style={{
                     backgroundColor: squareState[0].backgroundColor,
                     border: squareState[0].isChose ? 'white 2px dashed' : '#888 solid 2px'
                     }}
                 onClick={(e) => handleColorChange(0, e)}
-              ></div>
-            </div>
-          </div>
+              >
+        </div>
         </div>
       </div>
       <Pallete onClick={changeColorSquare(currentIndex)}/>
-    </div>
- 
-    
+    </div>   
   )
 }
 

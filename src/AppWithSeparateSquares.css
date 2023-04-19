@@ -10,9 +10,59 @@
   flex-direction: row;
 }
 
+.unit {
+  flex-basis: 50%;
+}
+
 .pallete {
   flex-basis: 50%;
   border-left: thistle 1px solid;
+}
+
+.square {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: auto;
+
+}
+
+
+.square.four {
+  width: 500px;
+  height: 500px;
+}
+
+.square.three {
+  width: 350px;
+  height: 350px;
+  top: 75px;
+  left: 75px;
+}
+
+.square.two {
+  width: 200px;
+  height: 200px;
+  top: 150px;
+  left: 150px;
+}
+
+.square.one {
+  width: 100px;
+  height: 100px;
+  top: 200px;
+  left: 200px;
+}
+
+.one,
+.two,
+.three,
+.four
+{
+  position: absolute;
+  border:#888 solid 2px;
+  box-sizing: border-box;
+  border-radius: 25px;
 }
 
 

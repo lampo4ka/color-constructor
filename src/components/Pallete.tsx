@@ -7,7 +7,18 @@ function Pallete(props: any) {
   const [isChose, setIsChose] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const colors = ['pink', 'blue', 'green']
+  const colors = [
+    'white',
+    'blue',
+    'green',
+    'fuchsia',
+    'yellow',
+    'aqua',
+    'navy',
+    'black',
+    'purple',
+    'red'
+  ]
 
 
   const handleColorPick = (color: string, i: number) => {

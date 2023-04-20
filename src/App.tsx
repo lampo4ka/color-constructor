@@ -34,18 +34,22 @@ function App() {
 
   const [squareState, setSquareState] = useState([
     {
+      name: 'square4',
       backgroundColor: 'initial',
       isChose: false
     },
     {
+      name: 'square3',
       backgroundColor: 'initial',
       isChose: false
     },
     {
+      name: 'square2',
       backgroundColor: 'initial',
       isChose: false
     },
     {
+      name: 'square1',
       backgroundColor: 'initial',
       isChose: false
     }
@@ -116,12 +120,28 @@ function App() {
       <div className="unit">
         <h1>Granny square element</h1>
         <div className="square">
-        <div className="square four">
+          {
+            squareState.map((square, index) => 
+              (
+                <div
+                  className={square.name}
+                  style={{
+                    backgroundColor: squareState[index].backgroundColor,
+                    border: squareState[index].isChose ? 'white 2px dashed' : '#888 solid 2px'
+                    }}
+                  onClick={(e) => handleColorChange(index, e)}
+                
+                />
+              )
+
+            )
+          }
+        {/* <div className="square4">
         </div>
-        <div className="square three">
+        <div className="square3">
         </div>
         <div
-              className="square two"
+              className="square2"
               style={{
                   backgroundColor: squareState[1].backgroundColor,
                   border: squareState[1].isChose ? 'white 2px dashed' : '#888 solid 2px'
@@ -130,14 +150,14 @@ function App() {
             >
         </div>
         <div
-                className="square one"
+                className="square1"
                 style={{
                     backgroundColor: squareState[0].backgroundColor,
                     border: squareState[0].isChose ? 'white 2px dashed' : '#888 solid 2px'
                     }}
                 onClick={(e) => handleColorChange(0, e)}
               >
-        </div>
+        </div> */}
         </div>
       </div>
       <Pallete onClick={changeColorSquare(currentIndex)}/>

@@ -28,36 +28,36 @@
 }
 
 
-.square.four {
+.square4 {
   width: 500px;
   height: 500px;
 }
 
-.square.three {
+.square3 {
   width: 350px;
   height: 350px;
   top: 75px;
   left: 75px;
 }
 
-.square.two {
+.square2 {
   width: 200px;
   height: 200px;
   top: 150px;
   left: 150px;
 }
 
-.square.one {
+.square1 {
   width: 100px;
   height: 100px;
   top: 200px;
   left: 200px;
 }
 
-.one,
-.two,
-.three,
-.four
+.square1,
+.square2,
+.square3,
+.square4
 {
   position: absolute;
   border:#888 solid 2px;

@@ -8,15 +8,11 @@
 .content {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .unit {
-  flex-basis: 50%;
-}
-
-.pallete {
-  flex-basis: 50%;
-  border-left: thistle 1px solid;
+  /* flex-basis: 50%; */
 }
 
 .square {

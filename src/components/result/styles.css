@@ -1,0 +1,49 @@
+.scarf {
+    flex-basis: 100%;
+    border-top: thistle 1px solid;
+    margin-top: 50px;
+    padding-top: 50px;
+  }
+
+.square {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+
+.square4 {
+    width: 100px;
+    height: 100px;
+  }
+  
+.square3 {
+    width: 75px;
+    height: 75px;
+    top: 10px;
+    left: 10px;
+}
+
+.square2 {
+    width: 50px;
+    height: 50px;
+    top: 60px;
+    left: 60px;
+}
+
+.square1 {
+    width: 25px;
+    height: 25px;
+    top: 85px;
+    left: 85px;
+}
+
+.square1,
+.square2,
+.square3,
+.square4
+{
+    position: absolute;
+    border:#888 solid 2px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}

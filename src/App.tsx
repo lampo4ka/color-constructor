@@ -3,6 +3,7 @@ import './App.css'
 import Pallete from './components/Pallete'
 import { useSelector, useDispatch } from './redux';
 import Clear from './components/Clear';
+import Scarf from './components/result';
 
 const catsSelector = (state: any) => state.cats;
 const dogsSelector = (state: any) => state.dogs;
@@ -112,6 +113,7 @@ function App() {
         <Clear onClick={clearSquare}/>
       </div>
       <Pallete onClick={changeColorSquare(currentIndex)}/>
+      <Scarf />
     </div>   
   )
 }

@@ -12,10 +12,22 @@ const nameSelector = (state: any) => state.name;
 
 
 const size = {
-  0: 'template',
-  1: 'small',
-  2: 'medium',
-  3: 'big',
+  xl: {
+    name: 'squareXL',
+    count: 1
+  },
+  l: {
+    name: 'squareL',
+    count: 9
+  },
+  m: {
+    name: 'squareM',
+    count: 24
+  },
+  s: {
+    name: 'squareS',
+    count: 54
+  },
 }
 
 function App() {
@@ -101,7 +113,7 @@ function App() {
     <div className="content">
       <div className="unit">
         <h1>Granny square element</h1>
-        <Square />
+        <Square size={size.xl.name}/>
         {/* <div className="square">
           {
             squareState.map((square, index) => 
@@ -123,7 +135,7 @@ function App() {
         <Clear onClick={clearSquare}/>
       </div>
       <Pallete onClick={changeColorSquare(currentIndex)}/>
-      <Scarf />
+      <Scarf size={size}/>
     </div>   
   )
 }

@@ -2,34 +2,16 @@ import {useMemo, useState} from 'react';
 import Square from '../square'
 import './styles.css'
 
-function Scarf() {
-    const [unitState, setUnitState] = useState([
-        {
-          name: 'square4',
-          backgroundColor: 'initial',
-        },
-        {
-          name: 'square3',
-          backgroundColor: 'initial',
-        },
-        {
-          name: 'square2',
-          backgroundColor: 'initial',
-        },
-        {
-          name: 'square1',
-          backgroundColor: 'initial',
-        }
-    ])
+function Scarf({size}: {size: any}) {
 
     const square = 
         (
-            <Square />
+            <Square size={size.l.name}/>
         )
 
 
     const scarf = useMemo(
-        () => new Array(6).fill(square),
+        () => new Array(size.l.count).fill(square),
         [square]
     );
 

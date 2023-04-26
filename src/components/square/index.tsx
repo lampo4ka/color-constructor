@@ -5,7 +5,7 @@ export type Square = {
   size: any
 }
 
-function Square() {
+function Square({size}: Square) {
 
   const [squareState, setSquareState] = useState([
     {
@@ -30,7 +30,7 @@ function Square() {
     }
 ])
 
-    const square = squareState.map((unit:any) => 
+    const square = squareState.map((unit) => 
         (
           <div
             key={unit.name}
@@ -45,7 +45,7 @@ function Square() {
       )
 
     return (
-      <div className="square">
+      <div className={`square ${size}`}>
         {square}
       </div>
     )

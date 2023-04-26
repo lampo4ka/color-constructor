@@ -4,10 +4,19 @@ import Pallete from './components/Pallete'
 import { useSelector, useDispatch } from './redux';
 import Clear from './components/Clear';
 import Scarf from './components/result';
+import Square from './components/square'
 
 const catsSelector = (state: any) => state.cats;
 const dogsSelector = (state: any) => state.dogs;
 const nameSelector = (state: any) => state.name;
+
+
+const size = {
+  0: 'template',
+  1: 'small',
+  2: 'medium',
+  3: 'big',
+}
 
 function App() {
   const cats = useSelector(catsSelector);
@@ -92,7 +101,8 @@ function App() {
     <div className="content">
       <div className="unit">
         <h1>Granny square element</h1>
-        <div className="square">
+        <Square />
+        {/* <div className="square">
           {
             squareState.map((square, index) => 
               (
@@ -109,7 +119,7 @@ function App() {
 
             )
           }
-        </div>
+        </div> */}
         <Clear onClick={clearSquare}/>
       </div>
       <Pallete onClick={changeColorSquare(currentIndex)}/>

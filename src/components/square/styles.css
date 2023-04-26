@@ -1,0 +1,52 @@
+:root {
+  --xl-size: 500px;
+}
+
+.square {
+    position: relative;
+    width: var(--xl-size);
+    height: var(--xl-size);
+  }
+
+  .square4 {
+    width: var(--xl-size);
+    height: var(--xl-size);
+  }
+  
+  .square3 {
+    --width: 75%;
+    --height: 75%;
+    width: var(--width);
+    height: var(--width);
+    top: calc((var(--xl-size) - var(--width))/2);
+    left: calc((var(--xl-size) - var(--width))/2);
+  }
+  
+  .square2 {
+    --width: 50%;
+    --height: 50%;
+    width: var(--width);
+    height: var(--width);
+    top: calc((var(--xl-size) - var(--width))/2);
+    left: calc((var(--xl-size) - var(--width))/2);
+  }
+  
+  .square1 {
+    --width: 25%;
+    --height: 25%;
+    width: var(--width);
+    height: var(--width);
+    top: calc((var(--xl-size) - var(--width))/2);
+    left: calc((var(--xl-size) - var(--width))/2);
+  }
+  
+  .square1,
+  .square2,
+  .square3,
+  .square4
+  {
+    position: absolute;
+    border:#888 solid 2px;
+    box-sizing: border-box;
+    border-radius: 25px;
+  }

@@ -1,4 +1,5 @@
 import {useMemo, useState} from 'react';
+import Square from '../square'
 import './styles.css'
 
 function Scarf() {
@@ -21,31 +22,23 @@ function Scarf() {
         }
     ])
 
-    const square = unitState.map((unit:any) => 
+    const square = 
         (
-          <div
-            key={unit.name}
-            className={unit.name}
-            style={{
-              backgroundColor: unit.backgroundColor,
-              }}
-          
-          />
+            <Square />
         )
 
-      )
 
     const scarf = useMemo(
-        () => new Array(6).fill(
-            <div className='square'>{square}</div>
-            ),
+        () => new Array(6).fill(square),
         [square]
     );
 
 
     return (
-        <div className='scarf'>
-            {scarf}
+        <div className='result'>
+            <div className='scarf'>
+                {scarf}
+            </div>
         </div>
     )
 

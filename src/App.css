@@ -11,10 +11,6 @@
   flex-wrap: wrap;
 }
 
-.unit {
-  /* flex-basis: 50%; */
-}
-
 .square {
   position: relative;
   width: 500px;

@@ -6,9 +6,9 @@ import Clear from './components/Clear';
 import Scarf from './components/result';
 import Square from './components/square'
 
-const catsSelector = (state: any) => state.cats;
-const dogsSelector = (state: any) => state.dogs;
-const nameSelector = (state: any) => state.name;
+// const catsSelector = (state: any) => state.cats;
+// const dogsSelector = (state: any) => state.dogs;
+// const nameSelector = (state: any) => state.name;
 
 
 const size = {
@@ -31,54 +31,54 @@ const size = {
 }
 
 function App() {
-  const cats = useSelector(catsSelector);
-  const dogs = useSelector(dogsSelector);
-  const name = useSelector(nameSelector);
-  const dispatch = useDispatch();
+  // const cats = useSelector(catsSelector);
+  // const dogs = useSelector(dogsSelector);
+  // const name = useSelector(nameSelector);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const id = setTimeout(
-      () => {
-        dispatch({ type: 'changeName', payload: 'Vlad' });
-        console.log('changeName');
-      },
-      1000
-    );
+  // useEffect(() => {
+  //   const id = setTimeout(
+  //     () => {
+  //       dispatch({ type: 'changeName', payload: 'Vlad' });
+  //       console.log('changeName');
+  //     },
+  //     1000
+  //   );
 
-    return () => clearTimeout(id);
-  }, [dispatch]);
+  //   return () => clearTimeout(id);
+  // }, [dispatch]);
 
-  console.log({cats, dogs, name})
+  // console.log({cats, dogs, name})
 
-  const [color, setColor] = useState('initial');
-  // const [isChose, setIsChose] = useState(false);
+  const [color, setColor] = useState('#4a4a48');
+  const [isChose, setIsChose] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [squareState, setSquareState] = useState([
     {
       name: 'square4',
-      backgroundColor: 'initial',
+      backgroundColor: '#4a4a48',
       isChose: false
     },
     {
       name: 'square3',
-      backgroundColor: 'initial',
+      backgroundColor: '#4a4a48',
       isChose: false
     },
     {
       name: 'square2',
-      backgroundColor: 'initial',
+      backgroundColor: '#4a4a48',
       isChose: false
     },
     {
       name: 'square1',
-      backgroundColor: 'initial',
+      backgroundColor: '#4a4a48',
       isChose: false
     }
 ])
 
   const handleColorChange = (index: number, e: any) => {
-    e.stopPropagation();
+    // e.stopPropagation();
 
     setSquareState(prev => prev.map(
         (item, i) => i === index
@@ -103,7 +103,7 @@ function App() {
       prev.map((item) => 
         ({
           ...item,
-          backgroundColor: 'initial',
+          backgroundColor: '#4a4a48',
           isChose: false
         })
       ))
@@ -113,7 +113,11 @@ function App() {
     <div className="content">
       <div className="unit">
         <h1>Granny square element</h1>
-        <Square size={size.xl.name}/>
+        <Square
+          size={size.xl.name}
+          onClick={handleColorChange}
+          state={squareState}
+          />
         {/* <div className="square">
           {
             squareState.map((square, index) => 
@@ -122,7 +126,7 @@ function App() {
                   className={square.name}
                   style={{
                     backgroundColor: squareState[index].backgroundColor,
-                    border: squareState[index].isChose ? 'white 2px dashed' : '#888 solid 2px'
+                    border: squareState[index].isChose ? '#4a4a48 2px dashed' : '#888 solid 2px'
                     }}
                   onClick={(e) => handleColorChange(index, e)}
                 
@@ -135,7 +139,7 @@ function App() {
         <Clear onClick={clearSquare}/>
       </div>
       <Pallete onClick={changeColorSquare(currentIndex)}/>
-      <Scarf size={size}/>
+      <Scarf size={size} state={squareState}/>
     </div>   
   )
 }

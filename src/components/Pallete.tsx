@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useContext } from 'react'
+import {SquaresContext} from '../data/SquaresContext';
 import './Pallete.css'
 
-function Pallete(props: any) {
-  const {onClick} = props;
+
+function Pallete() {
+  const context = useContext(SquaresContext)
 
   const [isChose, setIsChose] = useState(false);
   const [index, setIndex] = useState(0);
@@ -24,7 +26,7 @@ function Pallete(props: any) {
   const handleColorPick = (color: string, i: number) => {
     setIndex(i)
     setIsChose(isChose => i !== index ? isChose : !isChose)
-    onClick(color)
+    context.handleChangeColorSquare(color)
   }
 
   return (

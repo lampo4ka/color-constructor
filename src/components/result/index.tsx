@@ -2,11 +2,10 @@ import {useMemo, useState} from 'react';
 import Square from '../square'
 import './styles.css'
 
-function Scarf({size, state}: {size: any, state: any }) {
-
+function Scarf({size}: {size: any}) {
     const square = 
         (
-            <Square size={size.s.name} state={state} isResult={true}/>
+            <Square size={size.s.name} isResult={true}/>
         )
 
 

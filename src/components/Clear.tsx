@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import {SquaresContext} from '../data/SquaresContext';
 import './Clear.css'
 
-function Clear({onClick}:{onClick: () => void}) {
+function Clear() {
+    const context = useContext(SquaresContext);
     return (
         <button
             className="button"
-            onClick={onClick}
+            onClick={context.handleClearSquare}
         >
             Clear whole square
         </button>

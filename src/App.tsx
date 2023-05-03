@@ -1,10 +1,16 @@
-import { useState, useEffect, useCallback } from 'react'
+import {
+  useState,
+  createContext,
+  useEffect,
+  useCallback} from 'react'
 import './App.css'
 import Pallete from './components/Pallete'
 import { useSelector, useDispatch } from './redux';
 import Clear from './components/Clear';
 import Scarf from './components/result';
-import Square from './components/square'
+import Square from './components/square';
+import {squaresDefaultState} from './data/DefaultSquaresState';
+import {SquaresContext} from './data/SquaresContext';
 
 // const catsSelector = (state: any) => state.cats;
 // const dogsSelector = (state: any) => state.dogs;
@@ -54,31 +60,9 @@ function App() {
   const [isChose, setIsChose] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const [squareState, setSquareState] = useState([
-    {
-      name: 'square4',
-      backgroundColor: '#4a4a48',
-      isChose: false
-    },
-    {
-      name: 'square3',
-      backgroundColor: '#4a4a48',
-      isChose: false
-    },
-    {
-      name: 'square2',
-      backgroundColor: '#4a4a48',
-      isChose: false
-    },
-    {
-      name: 'square1',
-      backgroundColor: '#4a4a48',
-      isChose: false
-    }
-])
+  const [squareState, setSquareState] = useState(squaresDefaultState)
 
-  const handleColorChange = (index: number, e: any) => {
-    // e.stopPropagation();
+  const handleSquareChose = (index: number) => {
 
     setSquareState(prev => prev.map(
         (item, i) => i === index
@@ -92,13 +76,13 @@ function App() {
 
   }
 
-  const changeColorSquare = (index: number) => (color: string) => {
+  const handleChangeColorSquare = (index: number) => (color: string) => {
     setSquareState(prev => 
       prev.map((item, i) =>
         i === index ? {...item, backgroundColor: color} : item))
   }
 
-  const clearSquare = () => {
+  const handleClearSquare = () => {
     setSquareState(prev => 
       prev.map((item) => 
         ({
@@ -110,37 +94,25 @@ function App() {
   }
 
   return (
-    <div className="content">
-      <div className="unit">
-        <h1>Granny square element</h1>
-        <Square
-          size={size.xl.name}
-          onClick={handleColorChange}
-          state={squareState}
+    <SquaresContext.Provider value={{
+      state: squareState,
+      handleSquareChose,
+      handleChangeColorSquare: handleChangeColorSquare(currentIndex),
+      handleClearSquare
+    }}>
+      <div className="content">
+        <div className="unit">
+          <h1>Granny square element</h1>
+          <Square
+            size={size.xl.name}
           />
-        {/* <div className="square">
-          {
-            squareState.map((square, index) => 
-              (
-                <div
-                  className={square.name}
-                  style={{
-                    backgroundColor: squareState[index].backgroundColor,
-                    border: squareState[index].isChose ? '#4a4a48 2px dashed' : '#888 solid 2px'
-                    }}
-                  onClick={(e) => handleColorChange(index, e)}
-                
-                />
-              )
-
-            )
-          }
-        </div> */}
-        <Clear onClick={clearSquare}/>
-      </div>
-      <Pallete onClick={changeColorSquare(currentIndex)}/>
-      <Scarf size={size} state={squareState}/>
-    </div>   
+          <Clear/>
+        </div>
+        <Pallete/>
+        
+          <Scarf size={size}/>
+      </div>   
+    </SquaresContext.Provider>
   )
 }
 

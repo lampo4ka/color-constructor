@@ -6,35 +6,18 @@ import {
 import './App.css'
 import Pallete from './components/Pallete'
 import { useSelector, useDispatch } from './redux';
-import Clear from './components/Clear';
 import Scarf from './components/result';
 import Square from './components/square';
 import {squaresDefaultState} from './data/DefaultSquaresState';
 import {SquaresContext} from './data/SquaresContext';
+import {sizes} from './data/Sizes';
+import Sizes from './components/sizes';
+import Sandbox from './components/sandbox';
 
 // const catsSelector = (state: any) => state.cats;
 // const dogsSelector = (state: any) => state.dogs;
 // const nameSelector = (state: any) => state.name;
 
-
-const size = {
-  xl: {
-    name: 'squareXL',
-    count: 1
-  },
-  l: {
-    name: 'squareL',
-    count: 9
-  },
-  m: {
-    name: 'squareM',
-    count: 24
-  },
-  s: {
-    name: 'squareS',
-    count: 54
-  },
-}
 
 function App() {
   // const cats = useSelector(catsSelector);
@@ -101,16 +84,14 @@ function App() {
       handleClearSquare
     }}>
       <div className="content">
+        <Scarf size={sizes}/>
         <div className="unit">
-          <h1>Granny square element</h1>
+          <h2>Granny square element</h2>
           <Square
-            size={size.xl.name}
+            size={sizes.xl.name}
           />
-          <Clear/>
         </div>
-        <Pallete/>
-        
-          <Scarf size={size}/>
+        <Sandbox />
       </div>   
     </SquaresContext.Provider>
   )

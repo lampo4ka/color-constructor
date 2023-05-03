@@ -30,22 +30,22 @@ function Pallete() {
   }
 
   return (
-      <div className='pallete'>
-        <h1>Pallete</h1>
-        <div className='colors'>
-          {
-            colors.map((color, indexColor) =>
-              <div
-                className='color'
-                style={{
-                  backgroundColor: color,
-                  border: isChose && indexColor === index ? 'white 2px dashed' : 'inherit'
-                }}
-                onClick={() => handleColorPick(color, indexColor)}
-                ></div>
-          )}
-        </div>
-      </div> 
+    <>
+      <h2>Pallete</h2>
+      <div className='colors'>
+        {
+          colors.map((color, indexColor) =>
+            <div
+              className='color'
+              style={{
+                backgroundColor: color,
+                border: isChose && indexColor === index ? 'white 2px dashed' : 'inherit'
+              }}
+              onClick={() => handleColorPick(color, indexColor)}
+              ></div>
+        )}
+      </div>
+    </>
   )
 }
 

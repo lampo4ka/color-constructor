@@ -1,0 +1,13 @@
+.result {
+    flex-basis: 100%;
+    border-top: thistle 1px solid;
+    margin-top: 50px;
+    padding-top: 50px;
+  }
+
+.scarf {
+    width: 900px;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+}

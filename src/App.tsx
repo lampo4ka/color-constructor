@@ -1,60 +1,84 @@
 import { useState, useEffect, useCallback } from 'react'
-// import './App.css'
-import './AppWithSeparateSquares.css'
-import Pallete from './Pallete'
+import './App.css'
+import Pallete from './components/Pallete'
 import { useSelector, useDispatch } from './redux';
+import Clear from './components/Clear';
+import Scarf from './components/result';
+import Square from './components/square'
 
-const catsSelector = (state: any) => state.cats;
-const dogsSelector = (state: any) => state.dogs;
-const nameSelector = (state: any) => state.name;
+// const catsSelector = (state: any) => state.cats;
+// const dogsSelector = (state: any) => state.dogs;
+// const nameSelector = (state: any) => state.name;
+
+
+const size = {
+  xl: {
+    name: 'squareXL',
+    count: 1
+  },
+  l: {
+    name: 'squareL',
+    count: 9
+  },
+  m: {
+    name: 'squareM',
+    count: 24
+  },
+  s: {
+    name: 'squareS',
+    count: 54
+  },
+}
 
 function App() {
-  const cats = useSelector(catsSelector);
-  const dogs = useSelector(dogsSelector);
-  const name = useSelector(nameSelector);
-  const dispatch = useDispatch();
+  // const cats = useSelector(catsSelector);
+  // const dogs = useSelector(dogsSelector);
+  // const name = useSelector(nameSelector);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const id = setTimeout(
-      () => {
-        dispatch({ type: 'changeName', payload: 'Vlad' });
-        console.log('changeName');
-      },
-      1000
-    );
+  // useEffect(() => {
+  //   const id = setTimeout(
+  //     () => {
+  //       dispatch({ type: 'changeName', payload: 'Vlad' });
+  //       console.log('changeName');
+  //     },
+  //     1000
+  //   );
 
-    return () => clearTimeout(id);
-  }, [dispatch]);
+  //   return () => clearTimeout(id);
+  // }, [dispatch]);
 
-  console.log({cats, dogs, name})
+  // console.log({cats, dogs, name})
 
-  const [color, setColor] = useState('initial');
-  // const [isChose, setIsChose] = useState(false);
+  const [color, setColor] = useState('#4a4a48');
+  const [isChose, setIsChose] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [squareState, setSquareState] = useState([
     {
-      backgroundColor: 'initial',
+      name: 'square4',
+      backgroundColor: '#4a4a48',
       isChose: false
     },
     {
-      backgroundColor: 'initial',
+      name: 'square3',
+      backgroundColor: '#4a4a48',
       isChose: false
     },
     {
-      backgroundColor: 'initial',
+      name: 'square2',
+      backgroundColor: '#4a4a48',
       isChose: false
     },
     {
-      backgroundColor: 'initial',
+      name: 'square1',
+      backgroundColor: '#4a4a48',
       isChose: false
     }
 ])
 
   const handleColorChange = (index: number, e: any) => {
-    e.stopPropagation();
-
-    // setIsChose(isChose => !isChose);
+    // e.stopPropagation();
 
     setSquareState(prev => prev.map(
         (item, i) => i === index
@@ -69,78 +93,53 @@ function App() {
   }
 
   const changeColorSquare = (index: number) => (color: string) => {
-    // setColor(color)
     setSquareState(prev => 
       prev.map((item, i) =>
         i === index ? {...item, backgroundColor: color} : item))
   }
 
-  const colors = ['white', 'blue', 'green']
+  const clearSquare = () => {
+    setSquareState(prev => 
+      prev.map((item) => 
+        ({
+          ...item,
+          backgroundColor: '#4a4a48',
+          isChose: false
+        })
+      ))
+  }
 
-
-  // with inserted squeres
-
-  // return (
-  //   <div className="content">
-  //     <div className="unit">
-  //       <h1>Granny square element</h1>
-  //       <div className="square four">
-  //         <div className="square three">
-  //           <div
-  //             className="square two"
-  //             style={{
-  //                 backgroundColor: squareState[1].backgroundColor,
-  //                 border: squareState[1].isChose ? 'white 2px dashed' : '#888 solid 2px'
-  //                 }}
-  //             onClick={(e) => handleColorChange(1, e)}
-  //           >
-  //             <div
-  //               className="square one"
-  //               style={{
-  //                   backgroundColor: squareState[0].backgroundColor,
-  //                   border: squareState[0].isChose ? 'white 2px dashed' : '#888 solid 2px'
-  //                   }}
-  //               onClick={(e) => handleColorChange(0, e)}
-  //             ></div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <Pallete onClick={changeColorSquare(currentIndex)}/>
-  //   </div>   
-  // )
-
-  // with separate squeres
   return (
     <div className="content">
       <div className="unit">
         <h1>Granny square element</h1>
-        <div className="square">
-        <div className="square four">
-        </div>
-        <div className="square three">
-        </div>
-        <div
-              className="square two"
-              style={{
-                  backgroundColor: squareState[1].backgroundColor,
-                  border: squareState[1].isChose ? 'white 2px dashed' : '#888 solid 2px'
-                  }}
-              onClick={(e) => handleColorChange(1, e)}
-            >
-        </div>
-        <div
-                className="square one"
-                style={{
-                    backgroundColor: squareState[0].backgroundColor,
-                    border: squareState[0].isChose ? 'white 2px dashed' : '#888 solid 2px'
+        <Square
+          size={size.xl.name}
+          onClick={handleColorChange}
+          state={squareState}
+          />
+        {/* <div className="square">
+          {
+            squareState.map((square, index) => 
+              (
+                <div
+                  className={square.name}
+                  style={{
+                    backgroundColor: squareState[index].backgroundColor,
+                    border: squareState[index].isChose ? '#4a4a48 2px dashed' : '#888 solid 2px'
                     }}
-                onClick={(e) => handleColorChange(0, e)}
-              >
-        </div>
-        </div>
+                  onClick={(e) => handleColorChange(index, e)}
+                
+                />
+              )
+
+            )
+          }
+        </div> */}
+        <Clear onClick={clearSquare}/>
       </div>
       <Pallete onClick={changeColorSquare(currentIndex)}/>
+      <Scarf size={size} state={squareState}/>
     </div>   
   )
 }

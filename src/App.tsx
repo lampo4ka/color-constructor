@@ -10,7 +10,7 @@ import Scarf from './components/result';
 import Square from './components/square';
 import {squaresDefaultState} from './data/DefaultSquaresState';
 import {SquaresContext} from './data/SquaresContext';
-import {sizes} from './data/Sizes';
+import {sizes, SizeKey} from './data/Sizes';
 import Sizes from './components/sizes';
 import Sandbox from './components/sandbox';
 
@@ -43,7 +43,8 @@ function App() {
   const [isChose, setIsChose] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const [squareState, setSquareState] = useState(squaresDefaultState)
+  const [squareState, setSquareState] = useState(squaresDefaultState);
+  const [squareSize, setSquareSize] = useState<SizeKey>('l')
 
   const handleSquareChose = (index: number) => {
 
@@ -76,19 +77,25 @@ function App() {
       ))
   }
 
+  const handleChoseSize = (size: SizeKey) => {
+    setSquareSize(size)
+  }
+
   return (
     <SquaresContext.Provider value={{
       state: squareState,
       handleSquareChose,
       handleChangeColorSquare: handleChangeColorSquare(currentIndex),
-      handleClearSquare
+      handleClearSquare,
+      squareSize,
+      handleChoseSize
     }}>
       <div className="content">
-        <Scarf size={sizes}/>
+        <Scarf/>
         <div className="unit">
           <h2>Granny square element</h2>
           <Square
-            size={sizes.xl.name}
+            size='squareXL'
           />
         </div>
         <Sandbox />

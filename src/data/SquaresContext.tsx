@@ -8,5 +8,7 @@ export const SquaresContext = createContext({
     handleChangeColorSquare: (color: string) => {},
     handleClearSquare: () => {},
     squareSize: 'l' as SizeKey,
-    handleChoseSize: (size: SizeKey) => {}
+    handleChoseSize: (size: SizeKey) => {},
+    // isReadyToSave: false,
+    // handleReadyToSave: (isReady: boolean) => {}
   });

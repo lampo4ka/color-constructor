@@ -6,6 +6,8 @@ import './Pallete.css'
 function Pallete() {
   const context = useContext(SquaresContext)
 
+  const{ state } =  context;
+
   const [isChose, setIsChose] = useState(false);
   const [index, setIndex] = useState(0);
 
@@ -27,6 +29,7 @@ function Pallete() {
     setIndex(i)
     setIsChose(isChose => i !== index ? isChose : !isChose)
     context.handleChangeColorSquare(color)
+
   }
 
   return (

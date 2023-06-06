@@ -19,7 +19,7 @@ const {state, handleSquareChose} = context;
             className={unit.name}
             style={{
               backgroundColor: unit.backgroundColor,
-              border: state[index].isChose && !isResult ? 'white 2px dashed' : '#888 solid 2px'
+              border: state[index].borderColor
               }}
             onClick={() => handleSquareChose(index)}  
           

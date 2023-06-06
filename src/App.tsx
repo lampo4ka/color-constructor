@@ -40,18 +40,18 @@ function App() {
   // console.log({cats, dogs, name})
 
   const [color, setColor] = useState('#4a4a48');
-  const [isChose, setIsChose] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [squareState, setSquareState] = useState(squaresDefaultState);
   const [squareSize, setSquareSize] = useState<SizeKey>('l')
 
+
   const handleSquareChose = (index: number) => {
 
     setSquareState(prev => prev.map(
         (item, i) => i === index
-          ? {...item, isChose: !item.isChose}
-          : {...item, isChose: false}
+          ? {...item, borderColor: 'white 2px dashed'}
+          : item
         )
       
     );
@@ -63,7 +63,12 @@ function App() {
   const handleChangeColorSquare = (index: number) => (color: string) => {
     setSquareState(prev => 
       prev.map((item, i) =>
-        i === index ? {...item, backgroundColor: color} : item))
+        i === index ? {
+          ...item,
+          backgroundColor: color,
+          borderColor: 'none',
+          isFilled: !item.isFilled
+        } : item))
   }
 
   const handleClearSquare = () => {
@@ -72,7 +77,8 @@ function App() {
         ({
           ...item,
           backgroundColor: '#4a4a48',
-          isChose: false
+          borderColor: '#888 solid 2px',
+          isFilled: !item.isFilled
         })
       ))
   }

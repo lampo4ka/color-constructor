@@ -13,6 +13,7 @@ import {SquaresContext} from './data/SquaresContext';
 import {sizes, SizeKey} from './data/Sizes';
 import Sizes from './components/sizes';
 import Sandbox from './components/sandbox';
+import Submit from './components/save&submit/Submit'
 
 // const catsSelector = (state: any) => state.cats;
 // const dogsSelector = (state: any) => state.dogs;
@@ -39,7 +40,7 @@ function App() {
 
   // console.log({cats, dogs, name})
 
-  const [color, setColor] = useState('#4a4a48');
+  const [isScarfReady, setIsScarfReady] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [squareState, setSquareState] = useState(squaresDefaultState);
@@ -87,6 +88,10 @@ function App() {
     setSquareSize(size)
   }
 
+  const handleSaveButton = () => {
+    setIsScarfReady(true)
+  }
+
   return (
     <SquaresContext.Provider value={{
       state: squareState,
@@ -94,10 +99,15 @@ function App() {
       handleChangeColorSquare: handleChangeColorSquare(currentIndex),
       handleClearSquare,
       squareSize,
-      handleChoseSize
+      handleChoseSize,
+      handleSaveButton
     }}>
-      <div className="content">
-        <Scarf/>
+      {!isScarfReady && (
+        <div className="content">
+          <div className='result'>
+            <h2 className="">Hey, I'm your scarf :) Color me, please</h2>
+            <Scarf/>
+          </div>
         <div className="unit">
           <h2>Granny square element</h2>
           <Square
@@ -105,7 +115,18 @@ function App() {
           />
         </div>
         <Sandbox />
-      </div>   
+      </div> 
+      )}
+
+      {isScarfReady && (
+        <>
+          <h2>Если тебе всё нравится, то нажимай отправить. Макет шарфа улетит мне на почту</h2>
+          <Scarf/>
+          <Submit />
+        </>
+      )}
+
+
     </SquaresContext.Provider>
   )
 }

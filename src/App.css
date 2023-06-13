@@ -14,3 +14,9 @@
 .unit {
   margin: 0 auto;
 }
+
+.result {
+  flex-basis: 100%;
+  border-bottom: thistle 1px solid;
+  padding-bottom: 50px;
+}

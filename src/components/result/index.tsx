@@ -22,12 +22,11 @@ function Scarf() {
 
 
     return (
-        <div className='result'>
-            <h2>Hey, I'm your scarf :) Color me, please</h2>
+        // <div className='result'>
             <div className='scarf'>
                 {scarf}
             </div>
-        </div>
+        // </div>
     )
 
 }

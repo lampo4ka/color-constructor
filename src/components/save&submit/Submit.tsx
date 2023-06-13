@@ -2,21 +2,19 @@ import { useContext } from 'react'
 import {SquaresContext} from '../../data/SquaresContext';
 import './Save.css'
 
-function Save() {
+function Submit() {
     const context = useContext(SquaresContext);
     const { state, handleSaveButton } = context;
-    const isReadyToSave = state.every(square => square.isFilled)
     return (
         <button
             type="button"
             className="buttonSave"
             onClick={handleSaveButton}
-            disabled={!isReadyToSave}
         >
-            Save scarf
+            Submit scarf
         </button>
     )
 
 }
 
-export default Save
+export default Submit

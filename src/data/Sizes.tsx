@@ -10,7 +10,7 @@ export const sizes = {
     s: {
       name: 'squareS',
       count: 54
-    },
+    }
   }
 
   export type SizeKey = keyof typeof sizes;

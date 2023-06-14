@@ -14,6 +14,7 @@ import {sizes, SizeKey} from './data/Sizes';
 import Sizes from './components/sizes';
 import Sandbox from './components/sandbox';
 import Submit from './components/save&submit/Submit'
+import AllScarvesButton from './components/savedScarves/AllScarvesButton';
 
 // const catsSelector = (state: any) => state.cats;
 // const dogsSelector = (state: any) => state.dogs;
@@ -41,6 +42,7 @@ function App() {
   // console.log({cats, dogs, name})
 
   const [isScarfReady, setIsScarfReady] = useState(false);
+  const [isShownScarves, setIsShownScarves] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [squareState, setSquareState] = useState(squaresDefaultState);
@@ -92,6 +94,10 @@ function App() {
     setIsScarfReady(true)
   }
 
+  const handleShowSavedScarves = () => {
+    setIsShownScarves(true)
+  }
+
   return (
     <SquaresContext.Provider value={{
       state: squareState,
@@ -100,10 +106,13 @@ function App() {
       handleClearSquare,
       squareSize,
       handleChoseSize,
-      handleSaveButton
+      handleSaveButton,
+      isScarfReady,
+      handleShowSavedScarves
     }}>
-      {!isScarfReady && (
+      {!isShownScarves && (
         <div className="content">
+          <AllScarvesButton />
           <div className='result'>
             <h2 className="">Hey, I'm your scarf :) Color me, please</h2>
             <Scarf/>
@@ -118,7 +127,7 @@ function App() {
       </div> 
       )}
 
-      {isScarfReady && (
+      {isShownScarves && (
         <>
           <h2>Если тебе всё нравится, то нажимай отправить. Макет шарфа улетит мне на почту</h2>
           <Scarf/>

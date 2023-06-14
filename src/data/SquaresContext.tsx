@@ -9,5 +9,7 @@ export const SquaresContext = createContext({
     handleClearSquare: () => {},
     squareSize: 'l' as SizeKey,
     handleChoseSize: (size: SizeKey) => {},
-    handleSaveButton: () => {}
+    handleSaveButton: () => {},
+    isScarfReady: false,
+    handleShowSavedScarves: () => {}
   });

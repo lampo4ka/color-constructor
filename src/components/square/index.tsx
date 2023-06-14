@@ -4,10 +4,10 @@ import './styles.css'
 
 export type Square = {
   size: any,
-  isResult?: boolean
+  style?: any
 }
 
-function Square({size, isResult}: Square) {
+function Square({size, style}: Square) {
 const context = useContext(SquaresContext);
 const {state, handleSquareChose} = context;
 
@@ -29,7 +29,7 @@ const {state, handleSquareChose} = context;
       )
 
     return (
-      <div className={`square ${size}`}>
+      <div className={`${style} square ${size}`}>
         {square}
       </div>
     )

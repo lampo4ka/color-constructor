@@ -1,0 +1,9 @@
+.buttonSave {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.buttonSave:hover {
+    border-color: transparent;
+    /* cursor:not-allowed; */
+  }

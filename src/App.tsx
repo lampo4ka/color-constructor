@@ -16,30 +16,30 @@ import Sandbox from './components/sandbox';
 import Submit from './components/save&submit/Submit'
 import AllScarvesButton from './components/savedScarves/AllScarvesButton';
 
-// const catsSelector = (state: any) => state.cats;
-// const dogsSelector = (state: any) => state.dogs;
-// const nameSelector = (state: any) => state.name;
+const catsSelector = (state: any) => state.cats;
+const dogsSelector = (state: any) => state.dogs;
+const nameSelector = (state: any) => state.name;
 
 
 function App() {
-  // const cats = useSelector(catsSelector);
-  // const dogs = useSelector(dogsSelector);
-  // const name = useSelector(nameSelector);
-  // const dispatch = useDispatch();
+  const cats = useSelector(catsSelector);
+  const dogs = useSelector(dogsSelector);
+  const name = useSelector(nameSelector);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const id = setTimeout(
-  //     () => {
-  //       dispatch({ type: 'changeName', payload: 'Vlad' });
-  //       console.log('changeName');
-  //     },
-  //     1000
-  //   );
+  useEffect(() => {
+    const id = setTimeout(
+      () => {
+        dispatch({ type: 'changeName', payload: 'Vlad' });
+        console.log('changeName');
+      },
+      1000
+    );
 
-  //   return () => clearTimeout(id);
-  // }, [dispatch]);
+    return () => clearTimeout(id);
+  }, [dispatch]);
 
-  // console.log({cats, dogs, name})
+  console.log({cats, dogs, name})
 
   const [isScarfReady, setIsScarfReady] = useState(false);
   const [isShownScarves, setIsShownScarves] = useState(false);

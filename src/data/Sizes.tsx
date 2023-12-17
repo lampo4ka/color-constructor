@@ -1,13 +1,13 @@
 export const sizes = {
-    l: {
+    "l": {
       name: 'squareL',
       count: 9
     },
-    m: {
+    "m": {
       name: 'squareM',
       count: 24
     },
-    s: {
+    "s": {
       name: 'squareS',
       count: 54
     }

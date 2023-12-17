@@ -22,6 +22,7 @@ function AllScarvesButton() {
             type="button"
             className="allScarvesButton"
             onClick={handleShowSavedScarves}
+            disabled={!isScarfReady}
         >
             {buttonContent}
             <span className="tooltiptext">Сохраненные шарфы</span>

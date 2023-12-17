@@ -16,12 +16,13 @@ type PalleteName = typeof PALLETE_ONE | 'palleteTwo' | 'palleteThree';
 function Pallete() {
   const context = useContext(SquaresContext)
 
-  const{ state } =  context;
+  const { handleChangeColorSquare, currentColor } = context
 
-  const [isChose, setIsChose] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [selected, setSelected] = useState<number | null>(null);
   const [colors, setColors] = useState<Array<string>>([]);
   const [option, setOption] = useState<string>('Pallete One');
+
+  console.log(currentColor)
 
 
   const fetchColors = useCallback((name:PalleteName) => import('../data/colors').then((colors) => setColors(colors[name])), [])
@@ -83,9 +84,14 @@ function Pallete() {
 
 
   const handleColorPick = (color: string, i: number) => {
-    setIndex(i)
-    setIsChose(isChose => i !== index ? isChose : !isChose)
-    context.handleChangeColorSquare(color)
+    if(selected === i) {
+      setSelected(null)
+      handleChangeColorSquare(null)
+      return;
+    }
+
+    setSelected(i)
+    handleChangeColorSquare(color)
 
   }
 
@@ -106,7 +112,7 @@ function Pallete() {
               className='color'
               style={{
                 backgroundColor: color,
-                border: isChose && indexColor === index ? 'white 2px dashed' : 'inherit'
+                border: color === currentColor ? 'white 2px dashed' : 'inherit'
               }}
               onClick={() => handleColorPick(color, indexColor)}
               ></div>

@@ -11,7 +11,7 @@ function Scarf() {
 
     const square = 
         (
-            <Square size={sizes[squareSize].name} isResult={true}/>
+            <Square size={sizes[squareSize].name} />
         )
 
 

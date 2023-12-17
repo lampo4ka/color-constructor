@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from './redux';
 import Scarf from './components/result';
 import Square from './components/square';
 import {squaresDefaultState} from './data/DefaultSquaresState';
-import {SquaresContext} from './data/SquaresContext';
+import {SquaresContext, urlParams} from './data/SquaresContext';
 import {sizes, SizeKey} from './data/Sizes';
 import Sizes from './components/sizes';
 import Sandbox from './components/sandbox';
@@ -43,34 +43,44 @@ function App() {
 
   const [isScarfReady, setIsScarfReady] = useState(false);
   const [isShownScarves, setIsShownScarves] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
   const [squareState, setSquareState] = useState(squaresDefaultState);
-  const [squareSize, setSquareSize] = useState<SizeKey>('l')
+  const [squareSize, setSquareSize] = useState<SizeKey>('l');
+  const [urlParams, setUrlParams] = useState<urlParams>({
+    colors: [],
+    size: "l"
+  });
 
 
   const handleSquareChose = (index: number) => {
+    setCurrentIndex(index);
+  
 
     setSquareState(prev => prev.map(
         (item, i) => i === index
-          ? {...item, borderColor: 'white 2px dashed'}
-          : item
+        ? {
+          ...item, 
+          borderColor: 'white 2px dashed'
+        }
+        :{
+            ...item,
+            borderColor: '#888 solid 2px',
+          }
         )
       
     );
 
-    setCurrentIndex(index);
-
   }
 
-  const handleChangeColorSquare = (index: number) => (color: string) => {
+  const handleChangeColorSquare = (index: number) => (color: string | null) => {
+
     setSquareState(prev => 
       prev.map((item, i) =>
         i === index ? {
           ...item,
-          backgroundColor: color,
-          borderColor: 'none',
-          isFilled: !item.isFilled
+          backgroundColor: color ?? '#4a4a48',
+          isReadyToSave: true
         } : item))
   }
 
@@ -81,7 +91,7 @@ function App() {
           ...item,
           backgroundColor: '#4a4a48',
           borderColor: '#888 solid 2px',
-          isFilled: !item.isFilled
+          isReadyToSave: !item.isReadyToSave
         })
       ))
   }
@@ -91,23 +101,43 @@ function App() {
   }
 
   const handleSaveButton = () => {
-    setIsScarfReady(true)
+    setIsScarfReady(true);
+
+    const colors = squareState.map(square => square.backgroundColor);
+
+    const urlParams = {
+        colors,
+        size: squareSize
+    };
+
+    setUrlParams(urlParams)
   }
 
   const handleShowSavedScarves = () => {
-    setIsShownScarves(true)
+    if(isScarfReady) {
+      setIsShownScarves(true);
+
+      const currentUrl = window.location.href;
+
+      let params = new URLSearchParams(currentUrl);
+      params.set('size', urlParams.size);
+      
+      console.log(currentUrl)
+    }
+    return;
   }
 
   return (
     <SquaresContext.Provider value={{
       state: squareState,
       handleSquareChose,
-      handleChangeColorSquare: handleChangeColorSquare(currentIndex),
+      handleChangeColorSquare: handleChangeColorSquare(currentIndex) ,
       handleClearSquare,
       squareSize,
       handleChoseSize,
       handleSaveButton,
       isScarfReady,
+      currentColor: currentIndex !== null ? squareState[currentIndex].backgroundColor : null ,
       handleShowSavedScarves
     }}>
       {!isShownScarves && (
